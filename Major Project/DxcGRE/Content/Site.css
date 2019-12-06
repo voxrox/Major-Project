@@ -1,0 +1,86 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 680px;
+
+}
+.n0{
+    margin-top:-50px;
+}
+
+.a{
+    margin-left:-70px;
+    margin-top:4px;
+}
+
+.n1 {
+    margin-left: 10px;
+    color: white;
+}
+.n1:hover {
+        color: white;
+ }
+
+.n2 {
+    margin-left: 760px;
+    color: white;
+}
+    .n2:hover {
+        color: white;
+    }
+
+
+.login-form{
+    margin-left:300px
+}
+
+.upper-logo {
+    background-color: black;
+    margin-top: -60px;
+}
+.help:visited{
+    text-decoration:underline;
+    text-decoration-color:yellow;
+    font-size:20px;
+    color:white
+}
+.help:hover{
+    text-decoration-color:black
+}
+.input-fields{
+    margin-top:50px;
+    margin-left:390px;
+    width:700px
+}
+.input-text {
+    width: 440px;
+    height: 25px
+}
+.login-body{
+    background-image:url('../Images/Half Moon.jpg');
+    background-repeat:no-repeat;
+    background-position:top;
+}
+.logo{
+    text-decoration:none
+}
+.logo:hover{
+    text-decoration:none
+}
+
+
+
+
+

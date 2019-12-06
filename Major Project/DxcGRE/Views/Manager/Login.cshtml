@@ -1,0 +1,86 @@
+﻿@model DxcGRE.Models.gre_manager
+
+@{
+    Layout = null;
+}
+    <style type="text/css">
+
+    input::-webkit-input-placeholder { /* WebKit browsers */
+        color:black;
+        padding-left:1.5em
+    }
+    </style>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <div style="background-color:black;width:1264px;margin-left:-9px;">
+        <div style="background-color:black;margin-top:-60px;color:white">
+            <a class="logo" href="/Home/Index">
+                <img src="~/Images/logo.png" width="180" height="60" style="padding-left:20px;padding-top:20px" />
+            </a>
+            <span style="margin-left:280px;font-size:40px;font-family:Arial;">GLOBAL PASS</span>
+            <span style="margin-left:420px;font-family:Arial;padding-bottom:25px">
+                <a class="help" href="">Help</a>
+            </span>
+        </div>
+
+        <div class="login-body">
+            <div class="input-fields">
+                @using (Html.BeginForm(FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div>
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "input-text", @placeholder = "User ID" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                        <br />
+                        <div>
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "input-text", @placeholder = "Password" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                        <br />
+                        <span style="color:yellow"><b>@ViewBag.Error</b></span>
+                        <br />
+                        <div>
+                            <input style="margin-left:355px;width:90px;background-color:yellow;height:30px;margin-top:60px" type="submit" value="LOG IN" />
+                        </div>
+                        <br />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div>
+        <div style="padding:50px;padding-left:100px;margin-right:70px;align-items:center">
+            <span style="text-decoration:underline;"><b>Use of Electronic Communications Media</b></span>
+            <p style="text-align:justify;color:#808080;font-size:smaller">
+                By signing on, clicking OK or otherwise attempting to log on, access, or connect to a DXC Technology network or system resource anywhere in the world, you are notified of the monitoring and inspection of all your electronic communications, network activities and computing equipment by DXC and others authorized by DXC in accordance with DXC's electronic communications use policies as then exist, and if you are subject to the law of the US, Brazil or any other jurisdiction requiring consent for the activities here described, you consent to the same. Monitoring and inspection, in accordance with applicable country law, may be carried out for any lawful purpose. Depending on applicable legal restrictions on authorized use of information thus obtained, lawful purposes may include but are not limited to: prevention, detection, remediation and assessment of potential attacks on or infection of networks, equipment or data; protection against theft of information; performance of system maintenance; prevention of user malfeasance and system misuse; investigation of prohibited actions; provision of responses to data requests in litigation or investigations; and protection of a safe and well functioning cyber environment for DXC, DXC's customers and all system users. DXC Electronic Communications Use Policies
+            </p>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

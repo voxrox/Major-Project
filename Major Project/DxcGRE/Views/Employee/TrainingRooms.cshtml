@@ -1,0 +1,248 @@
+﻿@model DxcGRE.Models.dashboard
+
+@{
+    ViewBag.Title = "TrainingRooms";
+    Layout = "~/Views/Employee/_Layout - TR.cshtml";
+}
+<style>
+    .ui-datepicker-trigger 
+    { position:absolute;
+      top:25px ;
+      left:330px ; 
+      height:35px
+    }
+ 
+    * {
+        margin: 0;
+        padding: 0
+    }
+
+    body {
+        background-color: white;
+        background: url('../../Images/bg.png');
+    }
+
+    #progressbar {
+        width: 100%;
+        max-height: 7px;
+        background: repeating-linear-gradient(0,0,0,0,2);
+        overflow: hidden
+    }
+
+    .progress {
+        width: 33.33%;
+        height: 7px;
+        background-color: dodgerblue;
+        transition: 500ms ease-in
+    }
+
+    form {
+        width: 80%;
+        margin: 100px auto;
+        margin-left:60px
+    }
+
+    .item {
+        max-height: 175px;
+        display: none;
+    }
+
+    label {
+        color: white;
+        font-weight: 600;
+        font-size:large;
+        letter-spacing: 2px;
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    input {
+        background-color: white;
+        border: none;
+        width: 80%;
+        height: 2px;
+        padding: 30px;
+        color: black;
+        box-sizing: border-box
+    }
+
+    #actions {
+        position: fixed;
+        bottom: 70%;
+        left:58%;
+        transition: 500ms ease-in;
+        width:150px;
+
+    }
+    .prev,.next{
+        font-size:large;
+        border-radius:5px;
+        width:50px
+    }
+
+    #actions button, form button {
+        color: white;
+        background-color: black
+    }
+
+    #actions button:hover {
+        background-color: dodgerblue
+    }
+
+    .active {
+        display: block
+    }
+
+    .main {
+        background-color: black;
+        opacity: 0.7;
+        width: 500px;
+        height: 400px;
+        text-align: center;
+        margin-left: 320px;
+        margin-top: -4px
+    }
+
+    h1 {
+        margin-left: 320px;
+        text-align: center;
+        color: white;
+        margin-top: 10px;
+        background-color: black;
+        opacity: 0.7;
+        width: 500px
+    }
+    .book{
+        margin-top:50px;
+        width:200px;
+        height:-10px;
+        border-radius:10px;
+        color:white;
+        background-color:black;
+        font-size:x-large;
+    }
+    .book:hover{
+        color:yellow;
+        font-size:x-large;
+    }
+    .t{
+        color:yellow;
+        font-weight:600
+    }
+</style>
+
+<h1>Book Your Room</h1>
+<div class="main">
+    <div id="progressbar">
+        <div class="progress"></div>
+    </div>
+    @using (Html.BeginForm("TrainingRooms", "Employee", FormMethod.Post))
+    {
+        <div class="item active" data-width="33.33">
+            @Html.Label("Which room you want to book?", htmlAttributes: new { @class = "control-label col-md-10" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.RoomName, new SelectList(ViewBag.Rooms), "Select Room", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.RoomName, "", new { @class = "t" })
+            </div><br />
+            <a class="availability" style="color:white;margin-right:60px;" href="@Url.Action("Availabilty", "Employee")">Check Availability</a>
+        </div>
+
+        <div class="item" data-width="66.66">
+            @Html.Label("Starting Date ?", htmlAttributes: new { @class = "control-label col-md-10" })
+            <div class="col-md-10">
+                <br />
+                @Html.EditorFor(model => model.DateFrom, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateFrom, "", new { @class = "t" })
+            </div>
+        </div>
+        <div class="item" data-width="100">
+            @Html.Label("End Date ?", htmlAttributes: new { @class = "control-label col-md-10" })
+            <div class="col-md-10">
+                <br />
+                @Html.EditorFor(model => model.DateTo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateTo, "", new { @class = "t" })
+                <input type="submit" class="book" value="Book" style="margin-bottom:10px"/>
+            </div>
+        </div>
+    }
+        <div id="actions">
+            <button type="button" class="prev" id="p">Prev</button>
+            <button type="button" class="next" id="n">Next</button>
+        </div>
+    </div>
+
+
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+<script>
+
+    let active = document.querySelector('.active');
+    let progress = document.querySelector('.progress');
+    let prevBtn = document.querySelector('.prev');
+    let nextBtn = document.querySelector('.next');
+
+    function isprev() {
+        if (active.previousElementSibling) {
+            prevBtn.style.display = 'inline-block'
+        }
+        else {
+            prevBtn.style.display = 'none'
+        }
+    }
+
+    function isnext() {
+        if (active.nextElementSibling) {
+            nextBtn.style.display = 'inline-block'
+        }
+        else {
+            nextBtn.style.display = 'none'
+        }
+    }
+
+    prevBtn.addEventListener('click', function () {
+        let prevEle = active.previousElementSibling;
+        active.classList.remove('active');
+        active = prevEle;
+        active.classList.add('active')
+
+        progress.style.width = + active.attributes[1].value + '%';
+        isprev();
+        isnext();
+    })
+
+    nextBtn.addEventListener('click', function () {
+        let nextEle = active.nextElementSibling;
+        active.classList.remove('active');
+        active = nextEle;
+        active.classList.add('active')
+
+        progress.style.width = + active.attributes[1].value + '%';
+        isprev();
+        isnext();
+    })
+
+    isprev();
+    isnext();
+
+    $("#DateFrom").datepicker({
+        dateFormat: "dd/mm/yy",
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-1:+1",
+        minDate: 'today',
+        showOn: "both",
+        buttonImage: "/Images/Calender Icon 1.jpg",
+        buttonImageOnly: true
+    }).css("display", "inline-block");
+    $("#DateTo").datepicker({
+        dateFormat: "dd/mm/yy",
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-1:+1",
+        minDate: 'today',
+        showOn: "both",
+        buttonImage: "/Images/Calender Icon 1.jpg",
+        buttonImageOnly:true
+    }).css("display", "inline-block");
+</script>
+

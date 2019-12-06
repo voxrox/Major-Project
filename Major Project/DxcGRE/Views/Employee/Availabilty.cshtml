@@ -1,0 +1,47 @@
+﻿@model DxcGRE.Models.dashboard
+
+@{
+    ViewBag.Title = "Availabilty";
+    Layout = "~/Views/Employee/_Layout - TR.cshtml";
+}
+
+<h2>Availabilty</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-control" style="border:none">
+        <div class="form-group">
+            <div class="col-md-4" style="margin-left:-14px">
+                @Html.DropDownList("RoomName", new SelectList(ViewBag.Rooms), "Select Room",htmlAttributes:new { @class = "form-control" })
+            </div>
+        </div>
+
+    </div><br /><br />
+    <div id="divPartialView">
+    </div><br>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "TrainingRooms")
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#RoomName").change(function () {
+            var RoomName = document.getElementById("RoomName").value;           
+
+            $.ajax({
+                type: "post",
+                url: "/Employee/_AvailabilityPartial?room=" + RoomName,
+                contentType: "html",
+                success: function (response) {
+                    $("#divPartialView").empty();
+                    $("#divPartialView").append(response)
+                }
+            })
+        })
+    })
+</script>

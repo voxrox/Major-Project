@@ -1,0 +1,79 @@
+﻿@model DxcGRE.Models.feedback
+@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Views/Employee/_Layout.cshtml";
+}
+<style>
+    td, th {
+        text-align: center
+    }
+</style>
+<br />
+<h2>Employee Service Survey Feedback</h2>
+<br />
+@using(Html.BeginForm("Feedback", "Employee",FormMethod.Post))
+{ 
+    <table class="table table-hover center-block" style="width: 100%;">
+    <thead style="background-color: grey">
+        <tr>
+            <th>
+
+            </th>
+            <th style="background-color: grey">
+                <label>Very Satisfied</label>
+            </th>
+            <th style="background-color: grey">
+                <label> Satisfied</label>
+            </th>
+            <th style="background-color: grey">
+                <label> Neutral</label>
+            </th>
+            <th style="background-color: grey">
+                <label> Unsatisfied</label>
+            </th>
+            <th style="background-color: grey">
+                <label> Very Unsatisfied</label>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="background-color: grey"><label><b>Usability</b></label></td>
+            @Html.ValidationMessageFor(x=>x.Usability )
+            <td><input type="radio" class="form-radio" name="Position1" value="Very satisfied"></td>
+            <td> <input type="radio" class="form-radio" name="Position1" value="Satisfied"></td>
+            <td><input type="radio" class="form-radio" name="Position1" value="Neutral"></td>
+            <td><input type="radio" class="form-radio" name="Position1" value="Unsatisfied"></td>
+            <td> <input type="radio" class="form-radio" name="Position1" value="Very unsatisfied"></td>
+        </tr>
+        <tr>
+            <td style="background-color: grey"><label><b>Services</b></label></td>
+            @Html.ValidationMessageFor(x=>x.Service)
+            <td><input type="radio" class="form-radio" name="Position2" value="Very satisfied"></td>
+            <td> <input type="radio" class="form-radio" name="Position2" value="Satisfied"></td>
+            <td><input type="radio" class="form-radio" name="Position2" value="Neutral"></td>
+            <td> <input type="radio" class="form-radio" name="Position2" value="Unsatisfied"></td>
+            <td><input type="radio" class="form-radio" name="Position2" value="Very unsatisfied"></td>
+        </tr>
+        <tr>
+            <td style="background-color: grey;"><label><b>User Experience</b></label></td>
+            @Html.ValidationMessageFor(x => x.User_Experience)
+            <td> <input type="radio" class="form-radio" name="Position3" value="Very satisfied"></td>
+            <td><input type="radio" class="form-radio" name="Position3" value="Satisfied"></td>
+            <td><input type="radio" class="form-radio" name="Position3" value="Neutral"></td>
+            <td><input type="radio" class="form-radio" name="Position3" value="Unsatisfied"></td>
+            <td><input type="radio" class="form-radio" name="Position3" value="Very unsatisfied"></td>
+        </tr>
+    </tbody>
+    </table>
+    <h3 class="text-danger">@ViewBag.Error</h3>
+<br>
+<br>
+<br>
+
+@Html.TextAreaFor(x=>x.Comments,new { rows= 6, cols= 50 , placeholder="What can we improve.." })
+
+<br>
+<br>
+<input style="margin-left: 320px" type="submit" value="Submit">
+}

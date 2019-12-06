@@ -1,0 +1,63 @@
+﻿@model IEnumerable<DxcGRE.Models.feedback>
+
+@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Views/Manager/_Layout.cshtml";
+}
+<style>
+    .fblock{
+        border:5px solid black;
+        width:100%;
+        box-shadow:2px 2px 10px 2px black;
+        border-radius:5px
+    }
+    .header{
+        background-color:black;
+        opacity:0.8;
+        color:white;
+        padding-left:2px;
+        padding-bottom:5px
+    }
+    .data{
+        padding:5px
+    }
+</style>
+<br />
+<h2>Feedback</h2>
+<div class="container">
+    @*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Empid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usability)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User_Experience)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comments)
+            </th>
+            <th></th>
+        </tr>*@
+
+        @foreach (var item in Model)
+        {
+            <div class="fblock">
+                 <div class="header"><b>Employee Id</b> -  @Html.DisplayFor(modelItem => item.Empid)<br /></div>
+                 <div class="data">
+                     <b>Usability</b> -  @Html.DisplayFor(modelItem => item.Usability)<br>
+                     <b>Services</b> -  @Html.DisplayFor(modelItem => item.Service)<br>
+                     <b>User Experience</b> -  @Html.DisplayFor(modelItem => item.User_Experience)<br>
+                     <b>Comments</b> -  @Html.DisplayFor(modelItem => item.Comments)
+                 </div>
+             </div>
+             <br />
+             <br />
+        }
+
+</div>

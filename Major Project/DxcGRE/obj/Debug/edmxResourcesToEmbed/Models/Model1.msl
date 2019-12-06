@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Major_ProjectEntities">
+    <EntitySetMapping Name="employees">
+      <EntityTypeMapping TypeName="Model.employee">
+        <MappingFragment StoreEntitySet="employee">
+          <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+          <ScalarProperty Name="Sno" ColumnName="Sno" />
+          <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Chapter" ColumnName="Chapter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gre_manager">
+      <EntityTypeMapping TypeName="Model.gre_manager">
+        <MappingFragment StoreEntitySet="gre_manager">
+          <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+          <ScalarProperty Name="Sno" ColumnName="Sno" />
+          <ScalarProperty Name="GRE_ID" ColumnName="GRE_ID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dashboards">
+      <EntityTypeMapping TypeName="Model.dashboard">
+        <MappingFragment StoreEntitySet="dashboard">
+          <ScalarProperty Name="BookingStatus" ColumnName="BookingStatus" />
+          <ScalarProperty Name="DateFrom" ColumnName="DateFrom" />
+          <ScalarProperty Name="DateTo" ColumnName="DateTo" />
+          <ScalarProperty Name="RoomName" ColumnName="RoomName" />
+          <ScalarProperty Name="BookingType" ColumnName="BookingType" />
+          <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+          <ScalarProperty Name="Sno" ColumnName="Sno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="feedbacks">
+      <EntityTypeMapping TypeName="Model.feedback">
+        <MappingFragment StoreEntitySet="feedback">
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="User_Experience" ColumnName="User_Experience" />
+          <ScalarProperty Name="Service" ColumnName="Service" />
+          <ScalarProperty Name="Usability" ColumnName="Usability" />
+          <ScalarProperty Name="Empid" ColumnName="Empid" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

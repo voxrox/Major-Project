@@ -1,0 +1,79 @@
+﻿@model IEnumerable<DxcGRE.Models.dashboard>
+
+@{
+    ViewBag.Title = "ServicesBooked";
+    Layout = "~/Views/Employee/_Layout.cshtml";
+}
+<style>
+    thead{
+        background-color:black;
+        color:white;
+        align-content;
+        text-align:center
+    }
+    table{
+        text-align:center
+    }
+    tr:nth-child(even) {
+        background-color:lightgrey;
+
+    }
+
+</style>
+<br />
+<h2>Services Booked</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Employee ID
+            </th>
+            <th>
+                Booking Type
+            </th>
+            <th>
+                Room
+            </th>
+            <th>
+                Date From
+            </th>
+            <th>
+                Date To
+            </th>
+            <th>
+                Booking Status
+            </th>
+            <th>
+                Remove Booking
+            </th>
+        </tr>
+    </thead>
+
+@foreach (var item in Model.Reverse()) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.EmpID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.BookingType)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RoomName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateFrom)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateTo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.BookingStatus)
+    </td>
+    <td>
+        @Html.ActionLink("Cancel", "RemoveBooking", new { id = item.Sno })
+    </td>
+</tr>
+}
+
+</table>
